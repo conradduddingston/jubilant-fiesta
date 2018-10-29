@@ -1,4 +1,4 @@
-# X-Team NN Project Proposal
+# X-Team 118 Project Proposal Book.it
 
 See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code for tips on using *Markdown* tags to format __.md__ files
 
@@ -32,29 +32,49 @@ Be sure to submit corresponding image files, i.e. figure1.png (or figure1.jpg) f
 Briefly describe a problem that your team would like to solve.  
 Describe at a high level a program that could solve that problem.
 
+Problem:
+- Textbooks are expensive. Perhaps we could build an application that uses a web scraper to gather information regarding pricing and availability of textbooks from a multitude of vendors and promptly returns this information in a easy-to-understand way.
+
 ## Questions to answer for Exercise #2
 
 1. Name: Give your project proposal a name (and edit the top line of this file)
-
+ Book.it
 
 
 2. Output: Describe the output your program will produce.  Include and example format of the output produced.
-
+Different online locations books are available for purchase or rent sorted by order of price. Links included.
 
 
 3. Input: Describe the data that is needed to solve your problem. Include an example format of the input data.
+Because our model is based off of simplicity, our platform would require only a title and whether or not the user is wishing to purchase or rent.
 
-
+Example:
+- The Art of Public Speaking Vol.3, buy
 
 4. User Interface: Describe a user interface for your program.  Use text menus or a simple graphic user interface.
-
-
+The user is presented with a simple, clean and appealing text interface where they are intended to input the title of a textbook. After searching, they are promptly presented with a list of potential online retailers sorted by price. The user then can jump from the app to their web browser should they select any of the found retailers.
 
 5. Types List: Break your solution idea down into units that you think can be implemented with a single class.
-
-
-
 Name each interface or class and briefly describe its function or purpose.
+
+Input{
+  Sting BookName
+  Boolean isBuy
+}
+
+We will use inheritence for each of the retailers, with an abstract class RetailerScraper with operations that return data about the book we are searching for, and a subclass with the actual web-scraping implementation for each retailer. So BarnesAndNobleScraper would extend from RetailerScraper.
+
+We would also need a RetailerResult Class{
+   String RetailerName
+   String URL;
+   Double Price
+}
+
+The idea being that each Scraper would be provided with the instance of Input, and return a RetailerResult with the data about that book for that reailer. This data is then sorted and presented to the user.
+
+Example:
+Input input = new Input("The Art of Public Speaking, Vol 3", true);
+RetailerResult result = BarnesAndNobleScraper.scrape(input);
 
 
 ## Edit and Submit this file and any figures referenced by this document.
